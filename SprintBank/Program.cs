@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using SprintBank.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.AddDbContext<ApplicationDbContext>(option=> 
+option.UseSqlServer(builder.Configuration.GetConnectionString("default")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

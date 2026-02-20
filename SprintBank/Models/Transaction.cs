@@ -20,5 +20,10 @@ namespace SprintBank.Models
         public TransType TransactionType { get; set; }
         public DateTime TransactionDate { get; set; }
 
+        public Transaction()
+        {
+            TransactionUniqueReference = $"{Guid.NewGuid().ToString().Replace("-","").Substring(1, 27)}";
+        }
+
     }
 }
