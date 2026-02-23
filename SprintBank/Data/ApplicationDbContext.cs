@@ -10,6 +10,22 @@ namespace SprintBank.Data
         }
 
         public DbSet<Account> Accounts  { get; set; }   
-        public DbSet<Transaction> Transactions { get; set; }    
+        public DbSet<Transaction> Transactions { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Account>()
+                .Property(at => at.AccountType)
+                  .HasConversion<string>();
+
+            modelBuilder.Entity<Transaction>()
+                .Property(ts=> ts.TransactionStatus)
+                .HasConversion<string>();
+
+            modelBuilder.Entity<Transaction>()
+                .Property(tt => tt.TransactionType)
+                .HasConversion<string>();
+        }
     }
 }
